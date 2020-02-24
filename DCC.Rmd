@@ -42,7 +42,7 @@ You will be automatically assigned to one of the following login nodes:
 - `dcc-slogin-02`
 - `dcc-slogin-03`
 
-DCC can only be accessed from within the Duke Network. If you are off campus, use the VPN.
+DCC can only be accessed from within the Duke Network. If you are off campus, use the VPN or MFA.
 
 The default home directory should be something like
 
@@ -51,7 +51,7 @@ The default home directory should be something like
 ```
 
 
-## Getting started (Directory)
+## Directory
 
 You can create your own directory in `/work`
 
@@ -68,7 +68,7 @@ ls -la
 ```
 
 
-## Getting started (Groups)
+## Groups
 
 As a user of the cluster computer, you are part of several groups:
 
@@ -91,7 +91,7 @@ lscpu
 
 
 
-## Getting started (file transfer)
+## File Transfer
 
 Push a single file to DCC using a command like
 
@@ -163,6 +163,10 @@ common, common-large etc
 ## Batch Scripts
 
 Nodes, cpu, memory etc
+
+## Running Batch Scripts
+
+Run, squeue -u , output 
 
 ## Install R Packages
 

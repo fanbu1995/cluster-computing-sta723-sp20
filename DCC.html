@@ -136,13 +136,13 @@ slide:not(.current) .plotly.html-widget{
 <li><code>dcc-slogin-03</code></li>
 </ul>
 
-<p>DCC can only be accessed from within the Duke Network. If you are off campus, use the VPN.</p>
+<p>DCC can only be accessed from within the Duke Network. If you are off campus, use the VPN or MFA.</p>
 
 <p>The default home directory should be something like</p>
 
 <pre class = 'prettyprint lang-bash'>/hpc/home/netID</pre>
 
-</article></slide><slide class=""><hgroup><h2>Getting started (Directory)</h2></hgroup><article  id="getting-started-directory" class="smaller ">
+</article></slide><slide class=""><hgroup><h2>Directory</h2></hgroup><article  id="directory" class="smaller ">
 
 <p>You can create your own directory in <code>/work</code></p>
 
@@ -152,7 +152,7 @@ mkdir netID</pre>
 <pre class = 'prettyprint lang-bash'>cd /netID
 ls -la</pre>
 
-</article></slide><slide class=""><hgroup><h2>Getting started (Groups)</h2></hgroup><article  id="getting-started-groups" class="smaller ">
+</article></slide><slide class=""><hgroup><h2>Groups</h2></hgroup><article  id="groups" class="smaller ">
 
 <p>As a user of the cluster computer, you are part of several groups:</p>
 
@@ -171,7 +171,7 @@ ls -la</pre>
 <pre class = 'prettyprint lang-bash'>ssh dcc-statdept-01
 lscpu</pre>
 
-</article></slide><slide class=""><hgroup><h2>Getting started (file transfer)</h2></hgroup><article  id="getting-started-file-transfer" class="smaller ">
+</article></slide><slide class=""><hgroup><h2>File Transfer</h2></hgroup><article  id="file-transfer" class="smaller ">
 
 <p>Push a single file to DCC using a command like</p>
 
@@ -214,19 +214,25 @@ cd cluster_overview/</pre>
 
 <p>Always request a session via Slurm commands.</p>
 
-</article></slide><slide class=""><hgroup><h2>Slurm basics</h2></hgroup><article  id="slurm-basics-1" class="smaller ">
-
 <p>Slurm is a cluster management and job scheduling system. Basically, you use Slurm to request nodes, submit computing jobs and monitor those jobs.</p>
 
 <p>You can run interactive sessions or submit jobs through simple commands or a short script.</p>
 
-<p>To get started, we can reserve a node and open an interactive session via</p>
-
-<pre class = 'prettyprint lang-bash'>srun --pty bash -i</pre>
-
 <p>Slurm introduction and official documentation: <a href='https://slurm.schedmd.com/overview.html' title=''>https://slurm.schedmd.com/overview.html</a></p>
 
-</article></slide><slide class=""><hgroup><h2>DCC partitions</h2></hgroup><article  id="dcc-partitions" class="smaller "></article></slide>
+</article></slide><slide class=""><hgroup><h2>Slurm Commands</h2></hgroup><article  id="slurm-commands" class="smaller ">
+
+</article></slide><slide class=""><hgroup><h2>DCC partitions</h2></hgroup><article  id="dcc-partitions" class="smaller ">
+
+<p>common, common-large etc</p>
+
+</article></slide><slide class=""><hgroup><h2>Batch Scripts</h2></hgroup><article  id="batch-scripts" class="smaller ">
+
+<p>Nodes, cpu, memory etc</p>
+
+</article></slide><slide class=""><hgroup><h2>Install R Packages</h2></hgroup><article  id="install-r-packages" class="smaller ">
+
+</article></slide><slide class=""><hgroup><h2>Run R Script</h2></hgroup><article  id="run-r-script" class="smaller "></article></slide>
 
 
   <slide class="backdrop"></slide>
