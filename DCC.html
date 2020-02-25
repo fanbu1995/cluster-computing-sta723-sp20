@@ -106,9 +106,13 @@ slide:not(.current) .plotly.html-widget{
 
 <slide class=""><hgroup><h2>Useful resources</h2></hgroup><article  id="useful-resources" class="smaller ">
 
-<p>The DCC User Guide (good to skim through): <a href='https://rc.duke.edu/dcc/dcc-user-guide/' title=''>https://rc.duke.edu/dcc/dcc-user-guide/</a></p>
+<p>The DCC User Guide (good to skim through):</p>
 
-<p>Colin Rundel&#39;s slides for Sta 790 (Spring 19, slightly out-dated): <a href='http://www2.stat.duke.edu/~cr173/Sta790_Sp19/slides/Lec05.html#1' title=''>http://www2.stat.duke.edu/~cr173/Sta790_Sp19/slides/Lec05.html#1</a></p>
+<p><a href='https://rc.duke.edu/dcc/dcc-user-guide/' title=''>https://rc.duke.edu/dcc/dcc-user-guide/</a></p>
+
+<p>Colin Rundel&#39;s slides for Sta 790 (Spring 19, slightly out-dated):</p>
+
+<p><a href='http://www2.stat.duke.edu/~cr173/Sta790_Sp19/slides/Lec05.html#1' title=''>http://www2.stat.duke.edu/~cr173/Sta790_Sp19/slides/Lec05.html#1</a></p>
 
 </article></slide><slide class=""><hgroup><h2>DCC (Duke Computing Cluster) basic info</h2></hgroup><article  id="dcc-duke-computing-cluster-basic-info" class="smaller ">
 
@@ -157,7 +161,8 @@ ls -la</pre>
 <p>Usage access and privileges are associated with partitions on DCC:</p>
 
 <ul>
-<li><code>common</code>: default partition; jobs directed to core nodes with up to 64 GB RAM.</li>
+<li><code>common</code>: default partition; jobs directed to core nodes (up to 64 GB RAM).</li>
+<li><code>common-large</code>: jobs directed to larger core nodes (64-240 GB GB RAM).</li>
 <li><code>gpu-common</code>: jobs directed to GPU nodes (which you probably won&#39;t need).</li>
 <li><code>&lt;group_name&gt;</code>: private, lab-owned nodes; only accessible by group members.</li>
 </ul>
@@ -166,7 +171,9 @@ ls -la</pre>
 
 <pre class = 'prettyprint lang-bash'>groups</pre>
 
-<p>Being a member of <code>statdept</code>, you have priority to run jobs on the following nodes:</p>
+</article></slide><slide class=""><hgroup><h2>The <code>statdept</code> Group</h2></hgroup><article  id="the-statdept-group" class="smaller ">
+
+<p>All StatSci students are members of the <code>statdept</code> group; you have priority to run jobs on the following nodes:</p>
 
 <ul>
 <li><code>dcc-statdept-01</code></li>
@@ -199,7 +206,7 @@ top</pre>
 <pre class = 'prettyprint lang-bash'>git clone https://github.com/STA-723/cluster_overview.git
 cd cluster_overview/</pre>
 
-</article></slide><slide class=""><hgroup><h2>Available softwares on DCC</h2></hgroup><article  id="available-softwares-on-dcc" class="smaller ">
+</article></slide><slide class=""><hgroup><h2>Available Softwares on DCC</h2></hgroup><article  id="available-softwares-on-dcc" class="smaller ">
 
 <p>DCC offers some pre-installed softwares (&quot;modules&quot;) that you can directly load and use. To check all available modules, run</p>
 
@@ -215,7 +222,7 @@ cd cluster_overview/</pre>
 
 <pre class = 'prettyprint lang-bash'>module unload R</pre>
 
-</article></slide><slide class=""><hgroup><h2>Slurm basics</h2></hgroup><article  id="slurm-basics" class="smaller ">
+</article></slide><slide class=""><hgroup><h2>Slurm Basics</h2></hgroup><article  id="slurm-basics" class="smaller ">
 
 <p>First principle of DCC:</p>
 
@@ -231,13 +238,98 @@ cd cluster_overview/</pre>
 
 </article></slide><slide class=""><hgroup><h2>Slurm Commands</h2></hgroup><article  id="slurm-commands" class="smaller ">
 
-</article></slide><slide class=""><hgroup><h2>DCC partitions</h2></hgroup><article  id="dcc-partitions" class="smaller ">
-
-<p>common, common-large etc</p>
+<ul>
+<li><p><code>srun</code>: Reserve a node and run a single command line job</p></li>
+<li><p><code>sbatch</code>: Submit a batch job</p></li>
+<li><p><code>squeue</code>: Show lists of running jobs (use the <code>-u</code> flag to specify user)</p></li>
+<li><p><code>scancel</code>: Delete one or more batch jobs (<code>scancel &lt;JobID&gt;</code>)</p></li>
+<li><p><code>sinfo</code>: Show info about machines</p></li>
+<li><p><code>scontrol</code>: Show cluster configuration information</p></li>
+</ul>
 
 </article></slide><slide class=""><hgroup><h2>Batch Scripts</h2></hgroup><article  id="batch-scripts" class="smaller ">
 
-<p>Nodes, cpu, memory etc</p>
+<p>Look at the example batch script <code>example.sh</code>:</p>
+
+<pre class = 'prettyprint lang-bash'>#!/bin/bash
+#SBATCH --partition=common,common-large,statdept-low
+#SBATCH --account=statdept
+#SBATCH -c1
+
+hostname </pre>
+
+<p>From line 2 to 4, each line has 3 components:</p>
+
+<ul>
+<li><code>#SBATCH</code>: header that indicates a sbatch setting</li>
+<li><code>--XXX</code> OR <code>-X</code>: long or short command argument flag</li>
+<li><code>=xxx</code> OR <code>x</code>: the specified value for the argument</li>
+</ul>
+
+</article></slide><slide class=""><hgroup><h2><code>sbatch</code> Arguments</h2></hgroup><article  id="sbatch-arguments" class="smaller ">
+
+<table class = 'rmdtable'>
+<tr class="header">
+<th align="left">Short</th>
+<th align="center">Long</th>
+<th align="center">Default</th>
+<th align="center">Description</th>
+</tr>
+<tr class="odd">
+<td align="left">-p</td>
+<td align="center">&#8211;partition</td>
+<td align="center">common</td>
+<td align="center">Which partition to use</td>
+</tr>
+<tr class="even">
+<td align="left">-o</td>
+<td align="center">&#8211;output</td>
+<td align="center">*</td>
+<td align="center">Where to send stdout</td>
+</tr>
+<tr class="odd">
+<td align="left">-e</td>
+<td align="center">&#8211;error</td>
+<td align="center">*</td>
+<td align="center">Where to send stderr</td>
+</tr>
+<tr class="even">
+<td align="left">-N</td>
+<td align="center"></td>
+<td align="center">1</td>
+<td align="center">How many nodes (machines)</td>
+</tr>
+<tr class="odd">
+<td align="left">-n</td>
+<td align="center">&#8211;ntasks</td>
+<td align="center">1</td>
+<td align="center">How many parallel tasks (jobs)</td>
+</tr>
+<tr class="even">
+<td align="left">-c</td>
+<td align="center">&#8211;cpus-per-task</td>
+<td align="center">1</td>
+<td align="center">CPUs per task</td>
+</tr>
+<tr class="odd">
+<td align="left"></td>
+<td align="center">&#8211;mem</td>
+<td align="center">2GB</td>
+<td align="center">Real memory required per node</td>
+</tr>
+<tr class="even">
+<td align="left"></td>
+<td align="center">&#8211;mem-per-cpu</td>
+<td align="center">? M</td>
+<td align="center">Minimum memory required per allocated CPU</td>
+</tr>
+<tr class="odd">
+<td align="left">-a</td>
+<td align="center">&#8211;array</td>
+<td align="center">*</td>
+<td align="center">Submit a job array (sbatch only)</td>
+</tr>
+</table>
 
 </article></slide><slide class=""><hgroup><h2>Running Batch Scripts</h2></hgroup><article  id="running-batch-scripts" class="smaller ">
 

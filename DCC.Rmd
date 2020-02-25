@@ -13,9 +13,13 @@ knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
 
 ## Useful resources
 
-The DCC User Guide (good to skim through): <https://rc.duke.edu/dcc/dcc-user-guide/>
+The DCC User Guide (good to skim through):
 
-Colin Rundel's slides for Sta 790 (Spring 19, slightly out-dated): <http://www2.stat.duke.edu/~cr173/Sta790_Sp19/slides/Lec05.html#1>
+<https://rc.duke.edu/dcc/dcc-user-guide/>
+
+Colin Rundel's slides for Sta 790 (Spring 19, slightly out-dated):
+
+<http://www2.stat.duke.edu/~cr173/Sta790_Sp19/slides/Lec05.html#1>
 
 ## DCC (Duke Computing Cluster) basic info
 
@@ -55,11 +59,11 @@ The default home directory should be something like
 
 You can create your own directory in `/work`
 
-
 ```{bash, eval = FALSE}
 cd /work
 mkdir netID
 ```
+
 
 
 ```{bash, eval = FALSE}
@@ -72,27 +76,29 @@ ls -la
 
 Usage access and privileges are associated with partitions on DCC:
 
-- `common`: default partition; jobs directed to core nodes with up to 64 GB RAM.
+- `common`: default partition; jobs directed to core nodes (up to 64 GB RAM).
+- `common-large`: jobs directed to larger core nodes (64-240 GB GB RAM).
 - `gpu-common`: jobs directed to GPU nodes (which you probably won't need).
 - `<group_name>`: private, lab-owned nodes; only accessible by group members.
 
 As a user of the cluster, you are part of several partitions/groups:
-
 ```{bash, eval = FALSE}
 groups
 ```
 
-Being a member of `statdept`, you have priority to run jobs on the following nodes:
+## The `statdept` Group
+
+All StatSci students are members of the `statdept` group; you have priority to run jobs on the following nodes:
 
 - `dcc-statdept-01` 
 - `dcc-herringlab-01` (lower priority)
 - `dcc-volfovskylab-01` (lower priority)
 
 If you want to check the specifics of these nodes, you can run
-
 ```{bash, eval = FALSE}
 ssh dcc-statdept-01
 lscpu
+top
 ```
 
 
@@ -121,7 +127,7 @@ git clone https://github.com/STA-723/cluster_overview.git
 cd cluster_overview/
 ```
 
-## Available softwares on DCC
+## Available Softwares on DCC
 
 DCC offers some pre-installed softwares ("modules") that you can directly load and use. To check all available modules, run
 
@@ -144,7 +150,7 @@ module unload R
 ```
 
 
-## Slurm basics
+## Slurm Basics
 
 First principle of DCC:
 
@@ -160,14 +166,50 @@ Slurm introduction and official documentation: <https://slurm.schedmd.com/overvi
 
 ## Slurm Commands
 
+- `srun`: Reserve a node and run a single command line job
 
-## DCC partitions
+- `sbatch`: Submit a batch job
 
-common, common-large etc
+- `squeue`: Show lists of running jobs (use the `-u` flag to specify user)
+
+- `scancel`: Delete one or more batch jobs (`scancel <JobID>`)
+
+- `sinfo`: Show info about machines
+
+- `scontrol`: Show cluster configuration information
 
 ## Batch Scripts
 
-Nodes, cpu, memory etc
+Look at the example batch script `example.sh`:
+```{bash, eval = FALSE}
+#!/bin/bash
+#SBATCH --partition=common,common-large,statdept-low
+#SBATCH --account=statdept
+#SBATCH -c1
+
+hostname 
+```
+
+From line 2 to 4, each line has 3 components:
+
+- `#SBATCH`: header that indicates a sbatch setting
+- `--XXX` OR `-X`: long or short command argument flag
+- `=xxx` OR `x`: the specified value for the argument
+
+## `sbatch` Arguments
+
+Short	     Long	                 Default	               Description
+-------    ----------------      ------------------      ---------------------------------------------
+ -p	       --partition		       common                  Which partition to use
+ -o	       --output	             *	                     Where to send stdout
+ -e	       --error	             *	                     Where to send stderr
+ -N		                           1	                     How many nodes (machines)
+ -n	       --ntasks	             1	                     How many parallel tasks (jobs)
+ -c	       --cpus-per-task	     1	                     CPUs per task
+           --mem	               2GB	                   Real memory required per node
+           --mem-per-cpu	       ? M	                   Minimum memory required per allocated CPU
+ -a	       --array	             *	                     Submit a job array (sbatch only)
+
 
 ## Running Batch Scripts
 
