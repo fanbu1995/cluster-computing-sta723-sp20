@@ -230,7 +230,28 @@ cd cluster_overview/</pre>
 
 <p>Nodes, cpu, memory etc</p>
 
+</article></slide><slide class=""><hgroup><h2>Running Batch Scripts</h2></hgroup><article  id="running-batch-scripts" class="smaller ">
+
+<p>You can interact to the cluster using a batch script. We will run <code>example.sh</code></p>
+
+<pre class = 'prettyprint lang-bash'>more example.sh
+sbatch example.sh</pre>
+
+<p>You can check the status of your jobs with:</p>
+
+<pre class = 'prettyprint lang-bash'>squeue -u netID</pre>
+
+<p>Then your output will be saved as <code>slurm*.out</code> in the same directory in which you run the script. You can also specify another output name for your <code>.out</code> file.</p>
+
+<pre class = 'prettyprint lang-bash'>ls 
+more slurm*</pre>
+
 </article></slide><slide class=""><hgroup><h2>Install R Packages</h2></hgroup><article  id="install-r-packages" class="smaller ">
+
+<p>You will most likely your own R scripts in the cluster, in order to install the packages you can either open R and run <code>install.packages(&quot;package&quot;)</code></p>
+
+<pre class = 'prettyprint lang-bash'>more example.sh
+sbatch example.sh</pre>
 
 </article></slide><slide class=""><hgroup><h2>Run R Script</h2></hgroup><article  id="run-r-script" class="smaller "></article></slide>
 

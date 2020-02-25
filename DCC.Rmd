@@ -166,13 +166,46 @@ Nodes, cpu, memory etc
 
 ## Running Batch Scripts
 
-Run, squeue -u , output 
+You can interact to the cluster using a batch script. We will run `example.sh` 
+
+```{bash, eval = FALSE}
+more example.sh
+sbatch example.sh
+```
+
+You can check the status of your jobs with:
+
+```{bash, eval = FALSE}
+squeue -u netID
+```
+
+Then your output will be saved as `slurm*.out` in the same directory in which you run the script. You can also specify another output name for your `.out` file.
+
+```{bash, eval = FALSE}
+ls 
+more slurm*
+```
+
 
 ## Install R Packages
 
+You will most likely your own R scripts in the cluster, in order to install the packages you can either open R and run `install.packages("package")`, let's try with the following package:
+
+```{bash, eval = FALSE}
+install.packages("beepr")
+```
+
+you will have your packages installed in a directory of the cluster that you can link when running an Rscript
 
 ## Run R Script 
 
+Now we will run the batch script `example_Rscript.sh`, but first of all let's modify it to link it to your library of packages
+
+```{bash, eval = FALSE}
+vim example_Rscript.sh
+```
+
+In particular modify the line `Export R_LIBS_USER = ~/R/x86_64-pc-linux-gnu-library/3.6`
 
 
 
