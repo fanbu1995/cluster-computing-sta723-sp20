@@ -1,7 +1,7 @@
 ---
 title: "Cluster Computing and DCC Basics"
 author: "Federico Ferrari and Fan Bu"
-date: "2/24/2020"
+date: "2/25/2020"
 output: 
   ioslides_presentation:
     smaller: true
@@ -68,19 +68,25 @@ ls -la
 ```
 
 
-## Groups
+## DCC Partitions and Groups
 
-As a user of the cluster computer, you are part of several groups:
+Usage access and privileges are associated with partitions on DCC:
+
+- `common`: default partition; jobs directed to core nodes with up to 64 GB RAM.
+- `gpu-common`: jobs directed to GPU nodes (which you probably won't need).
+- `<group_name>`: private, lab-owned nodes; only accessible by group members.
+
+As a user of the cluster, you are part of several partitions/groups:
 
 ```{bash, eval = FALSE}
 groups
 ```
 
-Being a part of `statdept`, you have priority to run jobs on the following nodes:
+Being a member of `statdept`, you have priority to run jobs on the following nodes:
 
-- `dcc-herringlab-01`
-- `dcc-statdept-01`
-- `dcc-volfovskylab-01`
+- `dcc-statdept-01` 
+- `dcc-herringlab-01` (lower priority)
+- `dcc-volfovskylab-01` (lower priority)
 
 If you want to check the specifics of these nodes, you can run
 
@@ -88,7 +94,6 @@ If you want to check the specifics of these nodes, you can run
 ssh dcc-statdept-01
 lscpu
 ```
-
 
 
 ## File Transfer
