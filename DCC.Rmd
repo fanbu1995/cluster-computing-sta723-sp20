@@ -205,8 +205,20 @@ Now we will run the batch script `example_Rscript.sh`, but first of all let's mo
 vim example_Rscript.sh
 ```
 
-In particular modify the line `Export R_LIBS_USER = ~/R/x86_64-pc-linux-gnu-library/3.6`
+In particular modify the line `Export R_LIBS_USER = ~/R/x86_64-pc-linux-gnu-library/3.6`. With this script we can check that we correctly install the beepr package. 
 
+
+## Save your Results
+
+Never forget to save your results when running an Rscript otherwise they will be lost FOREVER. Once saved you can use git to add it to the repo and push it.
+
+```{bash, eval = FALSE}
+git add -A
+git commit -m "example of saving results"
+git push
+```
+
+And then you can pull them locally from your repo. 
 
 
 
